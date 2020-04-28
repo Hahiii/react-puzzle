@@ -5,6 +5,8 @@ import Box from '../box/box';
 
 function Puzzle() {
   const [gamePuzzle, setGamePuzzle] = useState([])
+  const [puzzleNumber, setPuzzleNumber] = useState()
+  const [directionToMove, setDirectionToMove] = useState("");
   const puzzleArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ""];
   const puzzleArrayMap = [];
   let x = puzzleArray.length;
@@ -27,16 +29,34 @@ function Puzzle() {
     let indexClick = tempArr.indexOf(boxToMove);
     let indexEmpty = tempArr.indexOf("");
 
-    if (indexClick - indexEmpty === 4 || indexClick - indexEmpty === -4) {
+    if (indexClick - indexEmpty === 4) {
       tempArr.splice(indexEmpty, 1, boxToMove);
       tempArr.splice(indexClick, 1, "");
+      setDirectionToMove("move-top")
+      setPuzzleNumber(boxToMove);
+    }
+    if (indexClick - indexEmpty === -4) {
+      tempArr.splice(indexEmpty, 1, boxToMove);
+      tempArr.splice(indexClick, 1, "");
+      setDirectionToMove("move-down")
+      setPuzzleNumber(boxToMove);
     }
 
-    if (indexClick - indexEmpty === 1 || indexClick - indexEmpty === -1) {
+    if (indexClick - indexEmpty === 1) {
       if (!isItFirstOrLast(indexClick, indexEmpty)) {
         tempArr.splice(indexEmpty, 1, boxToMove);
         tempArr.splice(indexClick, 1, "");
       }
+      setDirectionToMove("move-left")
+      setPuzzleNumber(boxToMove);
+    }
+    if (indexClick - indexEmpty === -1) {
+      if (!isItFirstOrLast(indexClick, indexEmpty)) {
+        tempArr.splice(indexEmpty, 1, boxToMove);
+        tempArr.splice(indexClick, 1, "");
+      }
+      setDirectionToMove("move-right")
+      setPuzzleNumber(boxToMove);
     }
     setGamePuzzle([...tempArr])
   }
@@ -56,15 +76,23 @@ function Puzzle() {
     <div className="puzzle-container">
       {gamePuzzle.map((item, index) => {
         return (
-          <Box
-            value={item}
-            key={index}
-            onClick={handleClick}
-          />
+          puzzleNumber === item ?
+            <Box
+              value={item}
+              onClick={handleClick}
+              key={`box-${index}`}
+              moveTo={directionToMove}
+            />
+            :
+            <Box
+              value={item}
+              onClick={handleClick}
+              key={`box-${index}`}
+            />
         )
       })
       }
-    </div>
+    </div >
   )
 }
 
