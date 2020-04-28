@@ -2,71 +2,69 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70px;
-  width: 70px;
+  height: 80px;
   border-radius: 4px;
-  margin-bottom: 2px;
-  margin-right: 2px;
+  margin-bottom: 3px;
+  margin-right: 3px;
   background: rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px 0;
 
   color: #333;
   font-size: 1.2rem;
   font-weight: 700;
   cursor: pointer;
-  flex: 1 1 70px;
-  position: relative;
+  flex: 1 1 80px;
 
   &.empty {
     opacity: 0;
   }
 
   &.move-top {
-    animation: totop 0.6s forwards;
+    animation: Top 0.3s forwards ease-in;
   }
 
   &.move-down {
-    animation: todown 0.6s forwards;
+    animation: Down 0.3s forwards ease-in;
   }
 
   &.move-left {
-    animation: toleft 0.6s forwards;
+    animation: Left 0.3s forwards ease-in;
   }
 
   &.move-right {
-    animation: toright 0.6s forwards;
+    animation: Right 0.3s forwards ease-in;
   }
 
-  @keyframes toleft {
+  @keyframes Left {
     from {
-      transform: translateX(70px);
+      transform: translateX(80px);
     }
     to {
       transform: translateX(0px);
     }
   }
 
-  @keyframes toright {
+  @keyframes Right {
     from {
-      transform: translateX(-70px);
+      transform: translateX(-80px);
     }
     to {
       transform: translateX(0px);
     }
   }
 
-  @keyframes todown {
+  @keyframes Down {
     from {
-      transform: translateY(-70px);
+      transform: translateY(-80px);
     }
     to {
       transform: translateY(0px);
     }
   }
 
-  @keyframes totop {
+  @keyframes Top {
     from {
-      transform: translateY(70px);
+      transform: translateY(80px);
     }
     to {
       transform: translateY(0px);
