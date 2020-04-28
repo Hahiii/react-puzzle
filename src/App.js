@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 
-import Puzzle from './components/game/puzzle';
+import Puzzle from './components/puzzle/puzzle';
 function App() {
   return (
     <div className="App">
