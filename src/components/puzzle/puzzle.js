@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './puzzle.scss';
 
 import Box from '../box/box';
+import data from '../../data/data.json';
 
 function Puzzle() {
   const [gamePuzzle, setGamePuzzle] = useState([])
@@ -10,6 +11,7 @@ function Puzzle() {
   const puzzleArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ""];
   const puzzleArrayMap = [];
   let x = puzzleArray.length;
+
   useEffect(() => {
     while (x > 0) {
       let rendomeIndex = Math.floor(Math.random() * puzzleArray.length);
@@ -24,7 +26,7 @@ function Puzzle() {
   }, [])
 
   const handleClick = (target) => {
-    let boxToMove = Number(target.innerText);
+    let boxToMove = Number(target.id);
     let tempArr = [...gamePuzzle];
     let indexClick = tempArr.indexOf(boxToMove);
     let indexEmpty = tempArr.indexOf("");
@@ -62,7 +64,6 @@ function Puzzle() {
   }
 
   const isItFirstOrLast = (index, empty) => {
-    console.log(index);
     if (index === 3 && empty === 4 || index === 7 && empty === 8 || index === 11 && empty === 12) {
       return true;
     }
@@ -82,12 +83,14 @@ function Puzzle() {
               onClick={handleClick}
               key={`box-${index}`}
               moveTo={directionToMove}
+              imageUrl={data[`part${item}`]}
             />
             :
             <Box
               value={item}
               onClick={handleClick}
               key={`box-${index}`}
+              imageUrl={data[`part${item}`]}
             />
         )
       })

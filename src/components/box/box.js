@@ -1,9 +1,11 @@
 import React from 'react';
 import './box.scss';
 
-function Box({ value, onClick, style, moveTo }) {
+function Box({ value, onClick, moveTo, imageUrl }) {
   return (
-    <div className={`box ${!value ? 'empty' : ''} ${moveTo ? moveTo : ""}`} onClick={value ? ((event) => onClick(event.target)) : null}> {value}</div >
+    <div className={`box ${!value ? 'empty' : ''} ${moveTo ? moveTo : ""}`} onClick={value ? ((event) => onClick(event.target)) : null}>
+      <img id={value} src={`${imageUrl}`} alt="image part" />
+    </div >
   )
 }
 
