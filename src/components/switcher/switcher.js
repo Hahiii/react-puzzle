@@ -1,15 +1,15 @@
 import React from 'react';
-import './switcher.scss';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectPuzzle, selectPreview, selectTempArr, selectPuzzleArray } from '../../redux/puzzle/puzzle.selectors';
+import { setPuzzle, setPreview, setTempArray } from '../../redux/puzzle/puzzle.action';
 
+import './switcher.scss';
 import pikachu from '../../images/pikachu.png';
 import bob from '../../images/bob.png';
 import numbers from '../../images/numbers.png';
-
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-
-import { selectPuzzle, selectPreview, selectTempArr, selectPuzzleArray } from '../../redux/puzzle/puzzle.selectors';
-import { setPuzzle, setPreview, setTempArray } from '../../redux/puzzle/puzzle.action';
+import monsters from '../../images/monsters.png';
+import bird from '../../images/bird.png';
 
 function ImageSwitcher({ updatePuzzle, updateTempArray, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray }) {
   const switchArray = [
@@ -24,6 +24,14 @@ function ImageSwitcher({ updatePuzzle, updateTempArray, previewPuzzleArray, prev
     {
       "url": bob,
       "name": "bob"
+    },
+    {
+      "url": monsters,
+      "name": "monsters"
+    },
+    {
+      "url": bird,
+      "name": "bird"
     }
   ];
 
