@@ -18,7 +18,6 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview }) {
   let x = preview.length;
 
   useEffect(() => {
-    setPuzzleNumber();
     if (!puzzleArray && puzzle) {
       while (x > 0) {
         let rendomeIndex = Math.floor(Math.random() * preview.length);
@@ -78,26 +77,23 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview }) {
     }
   }
 
+  const handleAnimation = () => {
+    setPuzzleNumber();
+  }
+
 
   return (
     <div className="puzzle-container">
       {puzzle && puzzleArray && puzzleArray.map((item, index) => {
         return (
-          puzzleNumber === item ?
-            <Box
-              value={item}
-              onClick={handleClick}
-              key={`box-${index}`}
-              moveTo={directionToMove}
-              imageUrl={data[puzzle][`part${item}`]}
-            />
-            :
-            <Box
-              value={item}
-              onClick={handleClick}
-              key={`box-${index}`}
-              imageUrl={data[puzzle][`part${item}`]}
-            />
+          <Box
+            value={item}
+            onClick={handleClick}
+            onAnimationEnd={handleAnimation}
+            key={`box-${index}`}
+            imageUrl={data[puzzle][`part${item}`]}
+            moveTo={puzzleNumber === item ? directionToMove : null}
+          />
         )
       })
       }

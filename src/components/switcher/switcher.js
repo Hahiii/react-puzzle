@@ -6,10 +6,10 @@ import bob from '../../images/bob.png';
 import numbers from '../../images/numbers.png';
 
 import { connect } from 'react-redux';
-import { setPuzzle, setPuzzleArray } from '../../redux/puzzle/puzzle.action';
+import { setPuzzle } from '../../redux/puzzle/puzzle.action';
 
 
-function ImageSwitcher({ updatePuzzle, updatePuzzleArray }) {
+function ImageSwitcher({ updatePuzzle }) {
   const switchArray = [
     {
       "url": numbers,
@@ -50,12 +50,5 @@ function ImageSwitcher({ updatePuzzle, updatePuzzleArray }) {
 const mapDispatchToProps = dispatch => ({
   updatePuzzle: (puzzle) => dispatch(setPuzzle(puzzle)),
 });
-
-// const mapStateToProps = createStructuredSelector({
-//   puzzleArray: selectPuzzleArray,
-//   puzzle: selectPuzzle,
-// });
-
-
 
 export default connect(null, mapDispatchToProps)(ImageSwitcher);
