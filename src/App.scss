@@ -31,4 +31,13 @@
     height: 200px;
     background: black;
   }
+
+  .solved-puzzle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
+  }
 }

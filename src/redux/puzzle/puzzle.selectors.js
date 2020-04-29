@@ -21,3 +21,8 @@ export const selectTempArr = createSelector(
   [selectGame],
   state => state.tempArr
 );
+
+export const selectPreviewState = createSelector(
+  [selectGame],
+  state => state.isPreview
+);

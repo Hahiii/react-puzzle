@@ -2,12 +2,13 @@ import { PuzzleActionTypes } from './puzzle.types';
 
 const INITIAL_STATE = {
   puzzle: "",
-  pikachu: null,
+  pikachu: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, "x", 13, 14, 15, 12],
   bob: null,
   monsters: null,
   bird: null,
   numbers: null,
-  preview: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ""]
+  preview: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "x"],
+  isPreview: false
 }
 
 export const puzzleReducer = (state = INITIAL_STATE, action) => {
@@ -35,6 +36,11 @@ export const puzzleReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         tempArr: [...action.payload],
+      }
+    case PuzzleActionTypes.SET_PREVIEW_STATE:
+      return {
+        ...state,
+        isPreview: action.payload,
       }
     default:
       return state;

@@ -21,5 +21,10 @@ export const setTempArray = tempArray => ({
   payload: tempArray
 });
 
+export const setIsPreviewState = previewState => ({
+  type: PuzzleActionTypes.SET_PREVIEW_STATE,
+  payload: previewState
+});
+
 
 

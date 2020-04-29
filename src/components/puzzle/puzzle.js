@@ -11,7 +11,7 @@ import { setPuzzleArray } from '../../redux/puzzle/puzzle.action';
 
 
 
-function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview }) {
+function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview, isSolved }) {
   const [puzzleNumber, setPuzzleNumber] = useState()
   const [directionToMove, setDirectionToMove] = useState("");
   const puzzleArrayMap = [];
@@ -34,17 +34,17 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview }) {
     let boxToMove = Number(target.id);
     let tempArr = [...puzzleArray];
     let indexClick = tempArr.indexOf(boxToMove);
-    let indexEmpty = tempArr.indexOf("");
+    let indexEmpty = tempArr.indexOf("x");
 
     if (indexClick - indexEmpty === 4) {
       tempArr.splice(indexEmpty, 1, boxToMove);
-      tempArr.splice(indexClick, 1, "");
+      tempArr.splice(indexClick, 1, "x");
       setDirectionToMove("move-top")
       setPuzzleNumber(boxToMove);
     }
     if (indexClick - indexEmpty === -4) {
       tempArr.splice(indexEmpty, 1, boxToMove);
-      tempArr.splice(indexClick, 1, "");
+      tempArr.splice(indexClick, 1, "x");
       setDirectionToMove("move-down")
       setPuzzleNumber(boxToMove);
     }
@@ -52,7 +52,7 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview }) {
     if (indexClick - indexEmpty === 1) {
       if (!isItFirstOrLast(indexClick, indexEmpty)) {
         tempArr.splice(indexEmpty, 1, boxToMove);
-        tempArr.splice(indexClick, 1, "");
+        tempArr.splice(indexClick, 1, "x");
       }
       setDirectionToMove("move-left")
       setPuzzleNumber(boxToMove);
@@ -60,7 +60,7 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview }) {
     if (indexClick - indexEmpty === -1) {
       if (!isItFirstOrLast(indexClick, indexEmpty)) {
         tempArr.splice(indexEmpty, 1, boxToMove);
-        tempArr.splice(indexClick, 1, "");
+        tempArr.splice(indexClick, 1, "x");
       }
       setDirectionToMove("move-right")
       setPuzzleNumber(boxToMove);
@@ -81,18 +81,18 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview }) {
     setPuzzleNumber();
   }
 
-
   return (
     <div className="puzzle-container">
       {puzzle && puzzleArray && puzzleArray.map((item, index) => {
         return (
           <Box
-            value={item}
+            value={parseInt(item) ? item : ""}
             onClick={handleClick}
             onAnimationEnd={handleAnimation}
             key={`box-${index}`}
             imageUrl={data[puzzle][`part${item}`]}
             moveTo={puzzleNumber === item ? directionToMove : null}
+            isSolved={isSolved}
           />
         )
       })
@@ -108,7 +108,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = createStructuredSelector({
   puzzleArray: selectPuzzleArray,
   puzzle: selectPuzzle,
-  preview: selectPreview
+  preview: selectPreview,
 });
 
 

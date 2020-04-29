@@ -1,11 +1,11 @@
 import React from 'react';
 import './box.scss';
 
-function Box({ value, onClick, moveTo, imageUrl, onAnimationEnd }) {
+function Box({ value, onClick, moveTo, imageUrl, onAnimationEnd, isSolved }) {
   return (
     <div
       id={value}
-      className={`box ${!value ? 'empty' : ''} ${moveTo ? moveTo : ""}`}
+      className={`box ${!value ? 'empty' : ''} ${moveTo ? moveTo : ""} ${isSolved ? "salved" : ""}`}
       onClick={value ? ((event) => onClick(event.target)) : null}
       onAnimationEnd={() => onAnimationEnd()}
     >

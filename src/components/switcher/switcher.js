@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectPuzzle, selectPreview, selectTempArr, selectPuzzleArray } from '../../redux/puzzle/puzzle.selectors';
-import { setPuzzle, setPreview, setTempArray } from '../../redux/puzzle/puzzle.action';
+import { setPuzzle, setPreview, setTempArray, setIsPreviewState } from '../../redux/puzzle/puzzle.action';
 
 import './switcher.scss';
 import pikachu from '../../images/pikachu.png';
@@ -11,7 +11,7 @@ import numbers from '../../images/numbers.png';
 import monsters from '../../images/monsters.png';
 import bird from '../../images/bird.png';
 
-function ImageSwitcher({ updatePuzzle, updateTempArray, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray }) {
+function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray }) {
   const switchArray = [
     {
       "url": numbers,
@@ -40,12 +40,14 @@ function ImageSwitcher({ updatePuzzle, updateTempArray, previewPuzzleArray, prev
   }
 
   const handleMouseEnter = (target) => {
-    previewPuzzleArray({ name: puzzle, array: [...preview] })
-    updateTempArray([...puzzleArray])
+    previewPuzzleArray({ name: puzzle, array: [...preview] });
+    updateTempArray([...puzzleArray]);
+    updatePreviewState(true);
   }
 
   const handleMouseLeave = () => {
-    previewPuzzleArray({ name: puzzle, array: [...tempArr] })
+    previewPuzzleArray({ name: puzzle, array: [...tempArr] });
+    updatePreviewState(false);
   }
 
   return (
@@ -77,6 +79,8 @@ const mapDispatchToProps = dispatch => ({
   updatePuzzle: (puzzle) => dispatch(setPuzzle(puzzle)),
   updateTempArray: (puzzleArray) => dispatch(setTempArray(puzzleArray)),
   previewPuzzleArray: (puzzleArray) => dispatch(setPreview(puzzleArray)),
+  updatePreviewState: (puzzleArray) => dispatch(setIsPreviewState(puzzleArray)),
+
 });
 
 const mapStateToProps = createStructuredSelector({
