@@ -1,35 +1,41 @@
 import React, { useState, useEffect } from 'react';
+
 import './puzzle.scss';
 
 import Box from '../box/box';
 import data from '../../data/data.json';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectPuzzleArray, selectPuzzle } from '../../redux/puzzle/puzzle.selectors';
+import { setPuzzleArray } from '../../redux/puzzle/puzzle.action';
 
-function Puzzle() {
-  const [gamePuzzle, setGamePuzzle] = useState([])
-  const [imagePuzzle, setImagePuzzle] = useState()
+
+
+function Puzzle({ puzzleArray, updatePuzzleArray, puzzle }) {
   const [puzzleNumber, setPuzzleNumber] = useState()
   const [directionToMove, setDirectionToMove] = useState("");
-  const puzzleArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ""];
   const puzzleArrayMap = [];
-  let x = puzzleArray.length;
+  let x = 16;
 
   useEffect(() => {
-    while (x > 0) {
-      let rendomeIndex = Math.floor(Math.random() * puzzleArray.length);
-      let rendomeValue = puzzleArray[rendomeIndex];
-      puzzleArrayMap.indexOf(rendomeValue) === -1 ?
-        puzzleArrayMap.push(rendomeValue) : x++;
-      x--;
+    if (!puzzleArray.length) {
+      console.log("hiiiiii");
+      while (x > 0) {
+        let rendomeIndex = Math.floor(Math.random() * puzzleArray.length);
+        let rendomeValue = puzzleArray[rendomeIndex];
+        puzzleArrayMap.indexOf(rendomeValue) === -1 ?
+          puzzleArrayMap.push(rendomeValue) : x++;
+        x--;
+      }
+      if (!x) {
+        updatePuzzleArray([...puzzleArrayMap])
+      }
     }
-    if (!x) {
-      setGamePuzzle([...puzzleArrayMap])
-    }
-    setImagePuzzle("pikachu")
-  }, [])
+  }, [puzzle])
 
   const handleClick = (target) => {
     let boxToMove = Number(target.id);
-    let tempArr = [...gamePuzzle];
+    let tempArr = [...puzzleArray];
     let indexClick = tempArr.indexOf(boxToMove);
     let indexEmpty = tempArr.indexOf("");
 
@@ -62,7 +68,7 @@ function Puzzle() {
       setDirectionToMove("move-right")
       setPuzzleNumber(boxToMove);
     }
-    setGamePuzzle([...tempArr])
+    updatePuzzleArray([...tempArr])
   }
 
   const isItFirstOrLast = (index, empty) => {
@@ -77,7 +83,7 @@ function Puzzle() {
 
   return (
     <div className="puzzle-container">
-      {gamePuzzle.map((item, index) => {
+      {puzzleArray.map((item, index) => {
         return (
           puzzleNumber === item ?
             <Box
@@ -85,14 +91,14 @@ function Puzzle() {
               onClick={handleClick}
               key={`box-${index}`}
               moveTo={directionToMove}
-              imageUrl={data[imagePuzzle][`part${item}`]}
+              imageUrl={data[puzzle][`part${item}`]}
             />
             :
             <Box
               value={item}
               onClick={handleClick}
               key={`box-${index}`}
-              imageUrl={data[imagePuzzle][`part${item}`]}
+              imageUrl={data[puzzle][`part${item}`]}
             />
         )
       })
@@ -101,4 +107,14 @@ function Puzzle() {
   )
 }
 
-export default Puzzle;
+const mapDispatchToProps = dispatch => ({
+  updatePuzzleArray: (puzzleArray) => dispatch(setPuzzleArray(puzzleArray)),
+});
+
+const mapStateToProps = createStructuredSelector({
+  puzzleArray: selectPuzzleArray,
+  puzzle: selectPuzzle,
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Puzzle);
