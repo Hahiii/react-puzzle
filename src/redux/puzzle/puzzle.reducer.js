@@ -4,6 +4,8 @@ const INITIAL_STATE = {
   puzzle: "",
   pikachu: null,
   bob: null,
+  monsters: null,
+  bird: null,
   numbers: null,
   preview: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ""]
 }
