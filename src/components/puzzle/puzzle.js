@@ -6,6 +6,7 @@ import data from '../../data/data.json';
 
 function Puzzle() {
   const [gamePuzzle, setGamePuzzle] = useState([])
+  const [imagePuzzle, setImagePuzzle] = useState()
   const [puzzleNumber, setPuzzleNumber] = useState()
   const [directionToMove, setDirectionToMove] = useState("");
   const puzzleArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ""];
@@ -23,6 +24,7 @@ function Puzzle() {
     if (!x) {
       setGamePuzzle([...puzzleArrayMap])
     }
+    setImagePuzzle("pikachu")
   }, [])
 
   const handleClick = (target) => {
@@ -83,14 +85,14 @@ function Puzzle() {
               onClick={handleClick}
               key={`box-${index}`}
               moveTo={directionToMove}
-              imageUrl={data[`part${item}`]}
+              imageUrl={data[imagePuzzle][`part${item}`]}
             />
             :
             <Box
               value={item}
               onClick={handleClick}
               key={`box-${index}`}
-              imageUrl={data[`part${item}`]}
+              imageUrl={data[imagePuzzle][`part${item}`]}
             />
         )
       })
