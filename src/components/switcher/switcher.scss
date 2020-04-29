@@ -11,22 +11,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 90px;
 
     .images {
-      width: 70px;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
       cursor: pointer;
-      margin-right: 5px;
-      border: 1px solid rgb(231, 233, 233);
-      transition: all 0.3s;
     }
 
     span {
-      cursor: pointer;
       font-weight: 100;
       font-size: 0.7rem;
       padding: 8px 10px;
       transition: all 0.3s;
-
+      cursor: pointer;
 
       &:hover {
         transform: scale(1.1);

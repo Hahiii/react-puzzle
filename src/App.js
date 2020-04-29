@@ -5,10 +5,10 @@ import Puzzle from './components/puzzle/puzzle';
 import ImageSwitcher from './components/switcher/switcher';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectPuzzleArray, selectPreview, selectPreviewState } from './redux/puzzle/puzzle.selectors';
+import { selectPuzzleArray, selectPreview, selectPreviewState, selectPuzzle } from './redux/puzzle/puzzle.selectors';
 
 
-function App({ puzzleArray, preview, isPreview }) {
+function App({ puzzleArray, preview, isPreview, puzzle }) {
   let isSolved = !isPreview && puzzleArray && preview.join("") === puzzleArray.join("");
 
   return (
@@ -20,7 +20,7 @@ function App({ puzzleArray, preview, isPreview }) {
         isSolved={isSolved}
       />
       <div className="solved-puzzle">
-        {isSolved && <h3>Well done..!!</h3>}
+        {isSolved && <h3>{`Well done..!! You solved ${puzzle.toUpperCase()}`}</h3>}
       </div>
       <Puzzle
         isSolved={isSolved}
@@ -32,7 +32,8 @@ function App({ puzzleArray, preview, isPreview }) {
 const mapStateToProps = createStructuredSelector({
   puzzleArray: selectPuzzleArray,
   preview: selectPreview,
-  isPreview: selectPreviewState
+  isPreview: selectPreviewState,
+  puzzle: selectPuzzle,
 });
 
 
