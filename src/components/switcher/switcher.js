@@ -11,25 +11,21 @@ import numbers from '../../images/numbers.png';
 import monsters from '../../images/monsters.png';
 import bird from '../../images/bird.png';
 
-function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray }) {
+function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray, isSolved }) {
   const switchArray = [
     {
       "url": numbers,
       "name": "numbers"
-    },
-    {
+    }, {
       "url": pikachu,
       "name": "pikachu"
-    },
-    {
+    }, {
       "url": bob,
       "name": "bob"
-    },
-    {
+    }, {
       "url": monsters,
       "name": "monsters"
-    },
-    {
+    }, {
       "url": bird,
       "name": "bird"
     }
@@ -64,10 +60,13 @@ function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, prev
               alt={`of ${item}`}
               onClick={(event) => handleClick(event.target)}
             />
-            {item.name === puzzle && <span
-              onMouseEnter={() => handleMouseEnter()}
-              onMouseLeave={() => handleMouseLeave()}
-            >Preview</span>}
+            {!isSolved &&
+              item.name === puzzle &&
+              <span
+                onMouseEnter={() => handleMouseEnter()}
+                onMouseLeave={() => handleMouseLeave()}
+              >Preview</span>
+            }
           </div>
         )
       })}

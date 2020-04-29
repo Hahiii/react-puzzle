@@ -16,7 +16,9 @@ function App({ puzzleArray, preview, isPreview }) {
       <header className="App-header">
         <h1>React Puzzle</h1>
       </header>
-      <ImageSwitcher />
+      <ImageSwitcher
+        isSolved={isSolved}
+      />
       <div className="solved-puzzle">
         {isSolved && <h3>Well done..!!</h3>}
       </div>
