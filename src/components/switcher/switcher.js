@@ -6,10 +6,10 @@ import bob from '../../images/bob.png';
 import numbers from '../../images/numbers.png';
 
 import { connect } from 'react-redux';
-import { setPuzzle } from '../../redux/puzzle/puzzle.action';
+import { setPuzzle, setPuzzleArray } from '../../redux/puzzle/puzzle.action';
 
 
-function ImageSwitcher({ updatePuzzle }) {
+function ImageSwitcher({ updatePuzzle, updatePuzzleArray }) {
   const switchArray = [
     {
       "url": numbers,
@@ -26,16 +26,12 @@ function ImageSwitcher({ updatePuzzle }) {
   ];
 
   const handleClick = (target) => {
-    console.log(target.id);
-
     updatePuzzle(target.id)
   }
 
   return (
     <div className="switcher">
       {switchArray.map((item, index) => {
-        console.log(item);
-
         return (
           <img
             id={item.name}
@@ -62,4 +58,4 @@ const mapDispatchToProps = dispatch => ({
 
 
 
-export default connect(null,mapDispatchToProps)(ImageSwitcher);
+export default connect(null, mapDispatchToProps)(ImageSwitcher);

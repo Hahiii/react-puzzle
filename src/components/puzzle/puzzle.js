@@ -6,30 +6,28 @@ import Box from '../box/box';
 import data from '../../data/data.json';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectPuzzleArray, selectPuzzle } from '../../redux/puzzle/puzzle.selectors';
+import { selectPuzzleArray, selectPuzzle, selectPreview } from '../../redux/puzzle/puzzle.selectors';
 import { setPuzzleArray } from '../../redux/puzzle/puzzle.action';
 
 
 
-function Puzzle({ puzzleArray, updatePuzzleArray, puzzle }) {
+function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview }) {
   const [puzzleNumber, setPuzzleNumber] = useState()
   const [directionToMove, setDirectionToMove] = useState("");
   const puzzleArrayMap = [];
-  let x = 16;
+  let x = preview.length;
 
   useEffect(() => {
-    if (!puzzleArray.length) {
-      console.log("hiiiiii");
+    setPuzzleNumber();
+    if (!puzzleArray && puzzle) {
       while (x > 0) {
-        let rendomeIndex = Math.floor(Math.random() * puzzleArray.length);
-        let rendomeValue = puzzleArray[rendomeIndex];
+        let rendomeIndex = Math.floor(Math.random() * preview.length);
+        let rendomeValue = preview[rendomeIndex];
         puzzleArrayMap.indexOf(rendomeValue) === -1 ?
           puzzleArrayMap.push(rendomeValue) : x++;
         x--;
       }
-      if (!x) {
-        updatePuzzleArray([...puzzleArrayMap])
-      }
+      updatePuzzleArray({ name: puzzle, array: [...puzzleArrayMap] })
     }
   }, [puzzle])
 
@@ -68,7 +66,7 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle }) {
       setDirectionToMove("move-right")
       setPuzzleNumber(boxToMove);
     }
-    updatePuzzleArray([...tempArr])
+    updatePuzzleArray({ name: puzzle, array: [...tempArr] })
   }
 
   const isItFirstOrLast = (index, empty) => {
@@ -83,7 +81,7 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle }) {
 
   return (
     <div className="puzzle-container">
-      {puzzleArray.map((item, index) => {
+      {puzzle && puzzleArray && puzzleArray.map((item, index) => {
         return (
           puzzleNumber === item ?
             <Box
@@ -114,6 +112,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = createStructuredSelector({
   puzzleArray: selectPuzzleArray,
   puzzle: selectPuzzle,
+  preview: selectPreview
 });
 
 

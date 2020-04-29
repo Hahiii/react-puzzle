@@ -8,5 +8,13 @@ export const selectPuzzle = createSelector(
 );
 export const selectPuzzleArray = createSelector(
   [selectGame],
-  state => state.puzzleArray
+  state => state[state.puzzle]
+);
+export const selectPreview = createSelector(
+  [selectGame],
+  state => state.preview
+);
+export const selectTempArr = createSelector(
+  [selectGame],
+  state => state.tempArr
 );
