@@ -69,10 +69,10 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview }) {
   }
 
   const isItFirstOrLast = (index, empty) => {
-    if (index === 3 && empty === 4 || index === 7 && empty === 8 || index === 11 && empty === 12) {
+    if ((index === 3 && empty === 4) || (index === 7 && empty === 8) || (index === 11 && empty === 12)) {
       return true;
     }
-    if (index === 4 && empty === 3 || index === 8 && empty === 7 || index === 12 && empty === 11) {
+    if ((index === 4 && empty === 3) || (index === 8 && empty === 7) || (index === 12 && empty === 11)) {
       return true;
     }
   }
