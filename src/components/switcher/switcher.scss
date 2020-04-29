@@ -6,15 +6,31 @@
   width: 100%;
   max-width: 80%;
 
-  .images {
-    width: 70px;
-    cursor: pointer;
-    margin-right: 5px;
-    border: 1px solid rgb(231, 233, 233);
-    transition: all .3s;
-    
-    &:hover {
-      transform: scale(1.1);
+  .puzzle-images {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .images {
+      width: 70px;
+      cursor: pointer;
+      margin-right: 5px;
+      border: 1px solid rgb(231, 233, 233);
+      transition: all 0.3s;
+    }
+
+    span {
+      cursor: pointer;
+      font-weight: 100;
+      font-size: 0.7rem;
+      padding: 8px 10px;
+      transition: all 0.3s;
+
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 }

@@ -22,11 +22,17 @@ export const puzzleReducer = (state = INITIAL_STATE, action) => {
         [action.payload.name]: [...action.payload.array],
         tempArr: [...action.payload.array]
       }
-      
+
     case PuzzleActionTypes.SET_PREVIEW_ARRAY:
       return {
         ...state,
         [action.payload.name]: [...action.payload.array],
+      }
+
+    case PuzzleActionTypes.SET_TEMP_ARRAY:
+      return {
+        ...state,
+        tempArr: [...action.payload],
       }
     default:
       return state;

@@ -6,14 +6,19 @@ export const setPuzzleArray = puzzleArray => ({
   payload: puzzleArray
 });
 
-export const setPuzzle = puzzleObj => ({
+export const setPuzzle = puzzle => ({
   type: PuzzleActionTypes.SET_PUZZLE,
-  payload: puzzleObj
+  payload: puzzle
 });
 
 export const setPreview = puzzleObj => ({
   type: PuzzleActionTypes.SET_PREVIEW_ARRAY,
   payload: puzzleObj
+});
+
+export const setTempArray = tempArray => ({
+  type: PuzzleActionTypes.SET_TEMP_ARRAY,
+  payload: tempArray
 });
 
 

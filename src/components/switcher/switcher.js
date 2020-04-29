@@ -6,10 +6,12 @@ import bob from '../../images/bob.png';
 import numbers from '../../images/numbers.png';
 
 import { connect } from 'react-redux';
-import { setPuzzle } from '../../redux/puzzle/puzzle.action';
+import { createStructuredSelector } from 'reselect';
 
+import { selectPuzzle, selectPreview, selectTempArr, selectPuzzleArray } from '../../redux/puzzle/puzzle.selectors';
+import { setPuzzle, setPreview, setTempArray } from '../../redux/puzzle/puzzle.action';
 
-function ImageSwitcher({ updatePuzzle }) {
+function ImageSwitcher({ updatePuzzle, updateTempArray, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray }) {
   const switchArray = [
     {
       "url": numbers,
@@ -26,21 +28,37 @@ function ImageSwitcher({ updatePuzzle }) {
   ];
 
   const handleClick = (target) => {
-    updatePuzzle(target.id)
+    updatePuzzle(target.id);
+  }
+
+  const handleMouseEnter = (target) => {
+    previewPuzzleArray({ name: puzzle, array: [...preview] })
+    updateTempArray([...puzzleArray])
+  }
+
+  const handleMouseLeave = () => {
+    previewPuzzleArray({ name: puzzle, array: [...tempArr] })
   }
 
   return (
     <div className="switcher">
       {switchArray.map((item, index) => {
         return (
-          <img
-            id={item.name}
-            className="images"
-            src={item.url}
-            alt={`of ${item}`}
+          <div className="puzzle-images"
             key={`image-${index}`}
-            onClick={(event) => handleClick(event.target)}
-          />
+          >
+            <img
+              id={item.name}
+              className="images"
+              src={item.url}
+              alt={`of ${item}`}
+              onClick={(event) => handleClick(event.target)}
+            />
+            {item.name === puzzle && <span
+              onMouseEnter={() => handleMouseEnter()}
+              onMouseLeave={() => handleMouseLeave()}
+            >Preview</span>}
+          </div>
         )
       })}
     </div >
@@ -49,6 +67,17 @@ function ImageSwitcher({ updatePuzzle }) {
 
 const mapDispatchToProps = dispatch => ({
   updatePuzzle: (puzzle) => dispatch(setPuzzle(puzzle)),
+  updateTempArray: (puzzleArray) => dispatch(setTempArray(puzzleArray)),
+  previewPuzzleArray: (puzzleArray) => dispatch(setPreview(puzzleArray)),
 });
 
-export default connect(null, mapDispatchToProps)(ImageSwitcher);
+const mapStateToProps = createStructuredSelector({
+  preview: selectPreview,
+  tempArr: selectTempArr,
+  puzzle: selectPuzzle,
+  puzzleArray: selectPuzzleArray
+});
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageSwitcher);
