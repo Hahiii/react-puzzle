@@ -2,7 +2,7 @@ import { PuzzleActionTypes } from './puzzle.types';
 
 const INITIAL_STATE = {
   puzzle: "",
-  pikachu: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, "x", 13, 14, 15, 12],
+  pikachu: null,
   bob: null,
   monsters: null,
   bird: null,

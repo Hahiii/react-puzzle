@@ -19,6 +19,7 @@ function App({ puzzleArray, preview, isPreview, puzzle }) {
     "bird": "#8acce6",
     "": "#8acce6"
   }
+console.log(puzzleArray);
 
 
   return (
