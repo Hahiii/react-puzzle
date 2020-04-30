@@ -26,3 +26,8 @@ export const selectPreviewState = createSelector(
   [selectGame],
   state => state.isPreview
 );
+
+export const selectSwitcherState = createSelector(
+  [selectGame],
+  state => state.isOpen
+);

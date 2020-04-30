@@ -14,7 +14,9 @@ const INITIAL_STATE = {
   bird: null,
   numbers: null,
   preview: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "x"],
-  isPreview: false
+  isPreview: false,
+  isOpen: true
+
 }
 
 export const puzzleReducer = (state = INITIAL_STATE, action) => {
@@ -47,6 +49,11 @@ export const puzzleReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isPreview: action.payload,
+      }
+    case PuzzleActionTypes.SET_SWITCHER_STATE:
+      return {
+        ...state,
+        isOpen: !action.payload,
       }
     default:
       return state;

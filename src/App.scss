@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  
   .App-header {
     width: 100%;
     padding: 40px 0;
@@ -24,9 +24,11 @@
   }
 
   .main-container {
+    position: relative;
     flex: 1;
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
   }
 

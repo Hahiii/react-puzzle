@@ -1,52 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectPuzzle, selectPreview, selectTempArr, selectPuzzleArray } from '../../redux/puzzle/puzzle.selectors';
-import { setPuzzle, setPreview, setTempArray, setIsPreviewState } from '../../redux/puzzle/puzzle.action';
+import { selectPuzzle, selectPreview, selectTempArr, selectPuzzleArray, selectSwitcherState } from '../../redux/puzzle/puzzle.selectors';
+import { setSwitcherState, setPuzzle, setPreview, setTempArray, setIsPreviewState } from '../../redux/puzzle/puzzle.action';
 
 import './switcher.scss';
 import { switchArray } from '../../data/data';
+import Arrow from '../../images/downloading.png'
 
-function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray, isSolved }) {
+function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, updateSwitcherState, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray, isSolved, isSwitcherOpen }) {
   const handleClick = (target) => {
     updatePuzzle(target.id);
+    updateSwitcherState(isSwitcherOpen)
   }
-
-  const handleMouseEnter = (target) => {
-    previewPuzzleArray({ name: puzzle, array: [...preview] });
-    updateTempArray([...puzzleArray]);
-    updatePreviewState(true);
-  }
-
-  const handleMouseLeave = () => {
-    previewPuzzleArray({ name: puzzle, array: [...tempArr] });
-    updatePreviewState(false);
+  
+  const toggleSwitcher = () => {
+    updateSwitcherState(isSwitcherOpen)
   }
 
   return (
     <div className="switcher">
-      {switchArray.map((item, index) => {
-        return (
-          <div className="puzzle-images"
-            key={`image-${index}`}
-          >
-            <img
-              id={item.name}
-              className="images"
-              src={item.url}
-              alt={`of ${item}`}
-              onClick={(event) => handleClick(event.target)}
-            />
-            {!isSolved &&
-              item.name === puzzle &&
-              <span
-                onMouseEnter={() => handleMouseEnter()}
-                onMouseLeave={() => handleMouseLeave()}
-              >Preview</span>
-            }
-          </div>
-        )
-      })}
+      {isSwitcherOpen && <div className="switcher-container">
+        {switchArray.map((item, index) => {
+          return (
+            <div className="puzzle-images"
+              key={`image-${index}`}
+            >
+              <img
+                id={item.name}
+                className="images"
+                src={item.url}
+                alt={`of ${item}`}
+                onClick={(event) => handleClick(event.target)}
+              />
+            </div>
+          )
+        })}
+      </div>}
+      <img
+        className="downloading"
+        src={Arrow}
+        alt="arrow down"
+        onClick={() => toggleSwitcher()} />
     </div >
   )
 }
@@ -56,6 +51,7 @@ const mapDispatchToProps = dispatch => ({
   updateTempArray: (puzzleArray) => dispatch(setTempArray(puzzleArray)),
   previewPuzzleArray: (puzzleArray) => dispatch(setPreview(puzzleArray)),
   updatePreviewState: (puzzleArray) => dispatch(setIsPreviewState(puzzleArray)),
+  updateSwitcherState: (switcherState) => dispatch(setSwitcherState(switcherState)),
 
 });
 
@@ -63,7 +59,8 @@ const mapStateToProps = createStructuredSelector({
   preview: selectPreview,
   tempArr: selectTempArr,
   puzzle: selectPuzzle,
-  puzzleArray: selectPuzzleArray
+  puzzleArray: selectPuzzleArray,
+  isSwitcherOpen: selectSwitcherState
 });
 
 

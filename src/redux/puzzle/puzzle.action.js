@@ -26,5 +26,10 @@ export const setIsPreviewState = previewState => ({
   payload: previewState
 });
 
+export const setSwitcherState = switcherState => ({
+  type: PuzzleActionTypes.SET_SWITCHER_STATE,
+  payload: switcherState
+});
+
 
 
