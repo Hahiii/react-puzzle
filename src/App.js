@@ -17,10 +17,8 @@ function App({ puzzleArray, preview, isPreview, puzzle }) {
     "bob": "#c57f34",
     "monsters": "#5d9820",
     "bird": "#8acce6",
-    "": "#8acce6"
+    "": "#d1cfcf"
   }
-console.log(puzzleArray);
-
 
   return (
     <div className="App">
