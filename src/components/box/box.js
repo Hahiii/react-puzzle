@@ -9,7 +9,7 @@ function Box({ value, onClick, moveTo, imageUrl, onAnimationEnd, isSolved }) {
       onClick={value ? ((event) => onClick(event.target)) : null}
       onAnimationEnd={() => onAnimationEnd()}
     >
-      {parseInt(imageUrl) ? value : <img id={value} src={`${imageUrl}`} alt={`part ${value}`} />}
+      {parseInt(imageUrl) ? value : <img id={value} src={process.env.NODE_ENV !== 'production' ? `${imageUrl}` : `/react-puzzle${imageUrl}`} alt={`part ${value}`} />}
     </div >
   )
 }
