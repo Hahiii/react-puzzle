@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/react-puzzle/static/css/main.9002f579.chunk.css",
+    "main.js": "/react-puzzle/static/js/main.10811ef8.chunk.js",
+    "main.js.map": "/react-puzzle/static/js/main.10811ef8.chunk.js.map",
+    "runtime-main.js": "/react-puzzle/static/js/runtime-main.67b645bc.js",
+    "runtime-main.js.map": "/react-puzzle/static/js/runtime-main.67b645bc.js.map",
+    "static/js/2.18131f6d.chunk.js": "/react-puzzle/static/js/2.18131f6d.chunk.js",
+    "static/js/2.18131f6d.chunk.js.map": "/react-puzzle/static/js/2.18131f6d.chunk.js.map",
+    "index.html": "/react-puzzle/index.html",
+    "precache-manifest.95044f4319cd9f8b4b14e19540bb7bf9.js": "/react-puzzle/precache-manifest.95044f4319cd9f8b4b14e19540bb7bf9.js",
+    "service-worker.js": "/react-puzzle/service-worker.js",
+    "static/css/main.9002f579.chunk.css.map": "/react-puzzle/static/css/main.9002f579.chunk.css.map",
+    "static/js/2.18131f6d.chunk.js.LICENSE.txt": "/react-puzzle/static/js/2.18131f6d.chunk.js.LICENSE.txt",
+    "static/media/bird.png": "/react-puzzle/static/media/bird.8f06d968.png",
+    "static/media/bob.png": "/react-puzzle/static/media/bob.68efc56f.png",
+    "static/media/cricket.png": "/react-puzzle/static/media/cricket.a741b6c6.png",
+    "static/media/donald.png": "/react-puzzle/static/media/donald.941360fc.png",
+    "static/media/melman.png": "/react-puzzle/static/media/melman.daaacfff.png",
+    "static/media/micky.png": "/react-puzzle/static/media/micky.5a8c5413.png",
+    "static/media/minion.png": "/react-puzzle/static/media/minion.214fdfb6.png",
+    "static/media/minne.png": "/react-puzzle/static/media/minne.8d57583f.png",
+    "static/media/monsters.png": "/react-puzzle/static/media/monsters.1a24c447.png",
+    "static/media/numbers.png": "/react-puzzle/static/media/numbers.096e3b10.png",
+    "static/media/pikachu.png": "/react-puzzle/static/media/pikachu.8bb3bb4a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.67b645bc.js",
+    "static/js/2.18131f6d.chunk.js",
+    "static/css/main.9002f579.chunk.css",
+    "static/js/main.10811ef8.chunk.js"
+  ]
+}
