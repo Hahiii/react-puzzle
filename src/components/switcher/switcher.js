@@ -13,7 +13,7 @@ function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, upda
     updatePuzzle(target.id);
     updateSwitcherState(isSwitcherOpen)
   }
-  
+
   const toggleSwitcher = () => {
     updateSwitcherState(isSwitcherOpen)
   }
@@ -38,7 +38,7 @@ function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, upda
         })}
       </div>}
       <img
-        className="downloading"
+        className={`downloading ${isSwitcherOpen ? "arrowup" : ""}`}
         src={Arrow}
         alt="arrow down"
         onClick={() => toggleSwitcher()} />
