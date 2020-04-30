@@ -152,6 +152,23 @@
     "part14": "/images/minionbob/14.png",
     "part15": "/images/minionbob/15.png"
   },
+  "cricket": {
+    "part1": "/images/cricket/1.png",
+    "part2": "/images/cricket/2.png",
+    "part3": "/images/cricket/3.png",
+    "part4": "/images/cricket/4.png",
+    "part5": "/images/cricket/5.png",
+    "part6": "/images/cricket/6.png",
+    "part7": "/images/cricket/7.png",
+    "part8": "/images/cricket/8.png",
+    "part9": "/images/cricket/9.png",
+    "part10": "/images/cricket/10.png",
+    "part11": "/images/cricket/11.png",
+    "part12": "/images/cricket/12.png",
+    "part13": "/images/cricket/13.png",
+    "part14": "/images/cricket/14.png",
+    "part15": "/images/cricket/15.png"
+  },
   "numbers": {
     "part1": "1",
     "part2": "2",

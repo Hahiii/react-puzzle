@@ -15,42 +15,11 @@ import minne from '../../images/minne.png';
 import donald from '../../images/donald.png';
 import melman from '../../images/melman.png';
 import minion from '../../images/minion.png';
+import cricket from '../../images/cricket.png';
+
+import { switchArray } from '../../data/data';
 
 function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray, isSolved }) {
-  const switchArray = [
-    {
-      "url": numbers,
-      "name": "numbers"
-    }, {
-      "url": pikachu,
-      "name": "pikachu"
-    }, {
-      "url": minne,
-      "name": "minne"
-    }, {
-      "url": bob,
-      "name": "bob"
-    }, {
-      "url": monsters,
-      "name": "monsters"
-    }, {
-      "url": donald,
-      "name": "donald"
-    }, {
-      "url": bird,
-      "name": "bird"
-    }, {
-      "url": micky,
-      "name": "micky"
-    }, {
-      "url": minion ,
-      "name": "minion"
-    }, {
-      "url": melman,
-      "name": "melman"
-    }
-  ];
-
   const handleClick = (target) => {
     updatePuzzle(target.id);
   }
