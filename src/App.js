@@ -9,24 +9,28 @@ import { selectPuzzleArray, selectPreview, selectPreviewState, selectPuzzle } fr
 import { puzzleColor } from './data/data';
 
 function App({ puzzleArray, preview, isPreview, puzzle }) {
-    let isSolved = !isPreview && puzzleArray && preview.join("") === puzzleArray.join("");
-    return (
-      <div className="App">
-        <header className="App-header" style={{ background: `${puzzleColor[puzzle]}` }}>
-          <h1>Puzzle</h1>
-        </header>
+  let isSolved = !isPreview && puzzleArray && preview.join("") === puzzleArray.join("");
+  return (
+    <div className="App">
+      <header className="App-header" style={{ background: `${puzzleColor[puzzle]}` }}>
+        <h1>Puzzle</h1>
+      </header>
+      <div className="main-container">
         <ImageSwitcher
           isSolved={isSolved}
         />
-        <div className="solved-puzzle">
-          {isSolved && <h2>{`Well done..!! You solved ${puzzle.toUpperCase()}`}</h2>}
+        <div className="game-container">
+          <div className="solved-puzzle">
+            {isSolved && <h2>{`Well done..!! You solved ${puzzle.toUpperCase()}`}</h2>}
+          </div>
+          <Puzzle
+            isSolved={isSolved}
+          />
         </div>
-        <Puzzle
-          isSolved={isSolved}
-        />
-      </div >
-    );
-  }
+      </div>
+    </div >
+  );
+}
 
 const mapStateToProps = createStructuredSelector({
   puzzleArray: selectPuzzleArray,

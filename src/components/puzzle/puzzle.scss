@@ -5,4 +5,11 @@
   flex-wrap: wrap;
   text-align: center;
   width: 380px;
+  padding: 6px 4px 4px 6px;
+  box-shadow: inset rgba(0, 0, 0, 0.2) 1px 2px 3px 1px, inset rgba(0, 0, 0, 0.2) -1px -1px 3px 1px;
+  border-radius: 4px;
 }
+
+// @media screen and (max-width: 500px) {
+
+// }
