@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   donald: null,
   melman: null,
   minion: null,
+  cricket: null,
   monsters: null,
   bird: null,
   numbers: null,
