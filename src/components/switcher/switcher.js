@@ -5,18 +5,6 @@ import { selectPuzzle, selectPreview, selectTempArr, selectPuzzleArray } from '.
 import { setPuzzle, setPreview, setTempArray, setIsPreviewState } from '../../redux/puzzle/puzzle.action';
 
 import './switcher.scss';
-import pikachu from '../../images/pikachu.png';
-import bob from '../../images/bob.png';
-import numbers from '../../images/numbers.png';
-import monsters from '../../images/monsters.png';
-import bird from '../../images/bird.png';
-import micky from '../../images/micky.png';
-import minne from '../../images/minne.png';
-import donald from '../../images/donald.png';
-import melman from '../../images/melman.png';
-import minion from '../../images/minion.png';
-import cricket from '../../images/cricket.png';
-
 import { switchArray } from '../../data/data';
 
 function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray, isSolved }) {
