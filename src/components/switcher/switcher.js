@@ -10,6 +10,11 @@ import bob from '../../images/bob.png';
 import numbers from '../../images/numbers.png';
 import monsters from '../../images/monsters.png';
 import bird from '../../images/bird.png';
+import micky from '../../images/micky.png';
+import minne from '../../images/minne.png';
+import donald from '../../images/donald.png';
+import melman from '../../images/melman.png';
+import minion from '../../images/minion.png';
 
 function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray, isSolved }) {
   const switchArray = [
@@ -20,14 +25,29 @@ function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, prev
       "url": pikachu,
       "name": "pikachu"
     }, {
+      "url": minne,
+      "name": "minne"
+    }, {
       "url": bob,
       "name": "bob"
     }, {
       "url": monsters,
       "name": "monsters"
     }, {
+      "url": donald,
+      "name": "donald"
+    }, {
       "url": bird,
       "name": "bird"
+    }, {
+      "url": micky,
+      "name": "micky"
+    }, {
+      "url": minion ,
+      "name": "minion"
+    }, {
+      "url": melman,
+      "name": "melman"
     }
   ];
 
