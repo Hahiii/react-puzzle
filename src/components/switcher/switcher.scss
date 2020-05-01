@@ -5,12 +5,15 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
 
   .switcher-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
     width: 100%;
+    max-width: 90%;
     height: 70vh;
     flex-wrap: wrap;
     background: #f2f2f2;
@@ -29,16 +32,17 @@
     }
   }
   .puzzle-images {
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100px;
-    width: 90px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    height: 120px;
+    width: 100px;
 
     .images {
-      width: 70px;
-      height: 70px;
+      width: 90%;
+      height: 100px;
       object-fit: contain;
       cursor: pointer;
     }

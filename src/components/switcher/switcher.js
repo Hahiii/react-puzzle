@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectPuzzle, selectPreview, selectTempArr, selectPuzzleArray, selectSwitcherState } from '../../redux/puzzle/puzzle.selectors';
-import { setSwitcherState, setPuzzle, setPreview, setTempArray, setIsPreviewState } from '../../redux/puzzle/puzzle.action';
+import { selectPuzzle, selectSwitcherState } from '../../redux/puzzle/puzzle.selectors';
+import { setSwitcherState, setPuzzle } from '../../redux/puzzle/puzzle.action';
 
 import './switcher.scss';
-import { switchArray } from '../../data/data';
-import Arrow from '../../images/downloading.png'
+import { switchArray, puzzleColor } from '../../data/data';
 
-function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, updateSwitcherState, previewPuzzleArray, preview, tempArr, puzzle, puzzleArray, isSolved, isSwitcherOpen }) {
+
+import Arrow from '../../images/downloading.png'
+import DoneSign from '../donesign/done';
+
+function ImageSwitcher({ updatePuzzle, updateSwitcherState, isSwitcherOpen, puzzle, isSolved }) {
+
   const handleClick = (target) => {
     updatePuzzle(target.id);
     updateSwitcherState(isSwitcherOpen)
@@ -26,6 +30,11 @@ function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, upda
             <div className="puzzle-images"
               key={`image-${index}`}
             >
+              {puzzle === item.name && isSolved && <DoneSign
+                className="donesign"
+                outerColor={"green"}
+                innerColor={puzzleColor[item.name]}
+              />}
               <img
                 id={item.name}
                 className="images"
@@ -33,6 +42,8 @@ function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, upda
                 alt={`of ${item}`}
                 onClick={(event) => handleClick(event.target)}
               />
+              <div>
+              </div>
             </div>
           )
         })}
@@ -44,23 +55,18 @@ function ImageSwitcher({ updatePuzzle, updateTempArray, updatePreviewState, upda
         onClick={() => toggleSwitcher()} />
     </div >
   )
+
 }
 
 const mapDispatchToProps = dispatch => ({
   updatePuzzle: (puzzle) => dispatch(setPuzzle(puzzle)),
-  updateTempArray: (puzzleArray) => dispatch(setTempArray(puzzleArray)),
-  previewPuzzleArray: (puzzleArray) => dispatch(setPreview(puzzleArray)),
-  updatePreviewState: (puzzleArray) => dispatch(setIsPreviewState(puzzleArray)),
   updateSwitcherState: (switcherState) => dispatch(setSwitcherState(switcherState)),
 
 });
 
 const mapStateToProps = createStructuredSelector({
-  preview: selectPreview,
-  tempArr: selectTempArr,
   puzzle: selectPuzzle,
-  puzzleArray: selectPuzzleArray,
-  isSwitcherOpen: selectSwitcherState
+  isSwitcherOpen: selectSwitcherState,
 });
 
 
