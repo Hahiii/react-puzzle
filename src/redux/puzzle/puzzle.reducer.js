@@ -55,6 +55,10 @@ export const puzzleReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isOpen: !action.payload,
       }
+    case PuzzleActionTypes.SET_STATE_TO_INIT:
+      return {
+        ...INITIAL_STATE
+      }
     default:
       return state;
   }

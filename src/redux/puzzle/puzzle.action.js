@@ -30,6 +30,10 @@ export const setSwitcherState = switcherState => ({
   type: PuzzleActionTypes.SET_SWITCHER_STATE,
   payload: switcherState
 });
+export const setStateToInit = initState => ({
+  type: PuzzleActionTypes.SET_STATE_TO_INIT,
+  payload: initState
+});
 
 
 
