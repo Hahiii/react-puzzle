@@ -6,7 +6,10 @@ function Box({ value, onClick, moveTo, imageUrl, onAnimationEnd, isSolved }) {
     <div
       id={value}
       className={`box ${!value ? 'empty' : ''} ${moveTo ? moveTo : ""} ${isSolved ? "salved" : ""}`}
-      onClick={value ? ((event) => onClick(event.target)) : null}
+      onClick={value && typeof (onClick) === 'function' ? ((event) => {
+        event.preventDefault()
+        onClick(event.target)
+      }) : null}
       onAnimationEnd={() => onAnimationEnd()}
     >
       {parseInt(imageUrl) ? value : <img id={value} src={`/react-puzzle${imageUrl}`} alt={`part ${value}`} />}

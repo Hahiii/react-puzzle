@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectPuzzle, selectSwitcherState } from '../../redux/puzzle/puzzle.selectors';
+import { selectSwitcherState } from '../../redux/puzzle/puzzle.selectors';
 import { setSwitcherState, setPuzzle } from '../../redux/puzzle/puzzle.action';
 
 import './switcher.scss';
@@ -11,7 +11,7 @@ import { switchArray, puzzleColor } from '../../data/data';
 import Arrow from '../../images/downloading.png'
 import DoneSign from '../donesign/done';
 
-function ImageSwitcher({ updatePuzzle, updateSwitcherState, isSwitcherOpen, puzzle, isSolved }) {
+function ImageSwitcher({ updatePuzzle, updateSwitcherState, isSwitcherOpen, isDone }) {
 
   const handleClick = (target) => {
     updatePuzzle(target.id);
@@ -30,11 +30,17 @@ function ImageSwitcher({ updatePuzzle, updateSwitcherState, isSwitcherOpen, puzz
             <div className="puzzle-images"
               key={`image-${index}`}
             >
-              {puzzle === item.name && isSolved && <DoneSign
-                className="donesign"
-                outerColor={"green"}
-                innerColor={puzzleColor[item.name]}
-              />}
+
+              {isDone.map((itemIsDone, index) => {
+                return itemIsDone === item.name ? <DoneSign
+                  key={`done-${index}`}
+                  className="donesign"
+                  outerColor={"green"}
+                  innerColor={puzzleColor[item.name]}
+                /> : null
+              })
+              }
+
               <img
                 id={item.name}
                 className="images"
@@ -65,7 +71,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  puzzle: selectPuzzle,
   isSwitcherOpen: selectSwitcherState,
 });
 

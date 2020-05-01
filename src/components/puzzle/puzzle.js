@@ -11,7 +11,7 @@ import { setPuzzleArray } from '../../redux/puzzle/puzzle.action';
 
 
 
-function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview, isSolved }) {
+function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview, isSolved, isDone }) {
   const [puzzleNumber, setPuzzleNumber] = useState()
   const [directionToMove, setDirectionToMove] = useState("");
   const puzzleArrayMap = [];
@@ -80,14 +80,14 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview, isSolved }) {
   const handleAnimation = () => {
     setPuzzleNumber();
   }
-
+  
   return (
     <div className="puzzle-container">
       {puzzle && puzzleArray && puzzleArray.map((item, index) => {
         return (
           <Box
             value={parseInt(item) ? item : ""}
-            onClick={handleClick}
+            onClick={isDone.indexOf(puzzle) === -1 ? handleClick : null}
             onAnimationEnd={handleAnimation}
             key={`box-${index}`}
             imageUrl={data[puzzle][`part${item}`]}

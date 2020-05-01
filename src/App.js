@@ -10,8 +10,14 @@ import { setStateToInit, setPreview, setTempArray, setPuzzleArray, setIsPreviewS
 import { puzzleColor } from './data/data';
 
 function App({ resetStateToInit, previewPuzzleArray, updatePuzzleArray, updateTempArray, updatePreviewState, puzzleArray, preview, isPreview, puzzle, tempArr }) {
-  let isSolved = !isPreview && puzzleArray && preview.join("") === puzzleArray.join("");
   let [canClikck, setCanClikck] = useState(true);
+  let [isDone, setIsDone] = useState([]);
+  let isSolved = !isPreview && puzzleArray && preview.join("") === puzzleArray.join("");
+
+  if (isSolved && isDone.indexOf(puzzle) === -1) {
+    setIsDone([...isDone, puzzle])
+  }
+  
   const handlePreviewClick = (event) => {
     event.preventDefault()
     previewPuzzleArray({ name: puzzle, array: [...preview] });
@@ -29,9 +35,6 @@ function App({ resetStateToInit, previewPuzzleArray, updatePuzzleArray, updateTe
   const resetState = () => {
     resetStateToInit()
   }
-
-
-
   return (
     <div className="App">
       <header className="App-header" style={{ background: `${puzzleColor[puzzle]}` }}>
@@ -39,7 +42,7 @@ function App({ resetStateToInit, previewPuzzleArray, updatePuzzleArray, updateTe
       </header>
       <div className="main-container">
         <ImageSwitcher
-          isSolved={isSolved}
+          isDone={isDone}
         />
         <div className="game-container">
           <div className="solved-puzzle">
@@ -47,6 +50,7 @@ function App({ resetStateToInit, previewPuzzleArray, updatePuzzleArray, updateTe
           </div>
           <Puzzle
             isSolved={isSolved}
+            isDone={isDone}
           />
         </div>
         {puzzle &&
