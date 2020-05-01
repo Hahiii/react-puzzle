@@ -53,17 +53,17 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview, isSolved }) {
       if (!isItFirstOrLast(indexClick, indexEmpty)) {
         tempArr.splice(indexEmpty, 1, boxToMove);
         tempArr.splice(indexClick, 1, "x");
+        setDirectionToMove("move-left")
+        setPuzzleNumber(boxToMove);
       }
-      setDirectionToMove("move-left")
-      setPuzzleNumber(boxToMove);
     }
     if (indexClick - indexEmpty === -1) {
       if (!isItFirstOrLast(indexClick, indexEmpty)) {
         tempArr.splice(indexEmpty, 1, boxToMove);
         tempArr.splice(indexClick, 1, "x");
+        setDirectionToMove("move-right")
+        setPuzzleNumber(boxToMove);
       }
-      setDirectionToMove("move-right")
-      setPuzzleNumber(boxToMove);
     }
     updatePuzzleArray({ name: puzzle, array: [...tempArr] })
   }
