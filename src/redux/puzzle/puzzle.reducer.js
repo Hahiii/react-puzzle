@@ -32,8 +32,7 @@ export const puzzleReducer = (state = INITIAL_STATE, action) => {
       let arr = [];
       state.preview.join("") === action.payload.array.join("") ?
         arr = [action.payload.name] : arr = state.isDone
-        console.log(arr);
-        
+
       return {
         ...state,
         [action.payload.name]: [...action.payload.array],
