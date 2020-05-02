@@ -31,12 +31,14 @@ export const puzzleReducer = (state = INITIAL_STATE, action) => {
     case PuzzleActionTypes.SET_PUZZLE_ARRAY:
       let arr = [];
       state.preview.join("") === action.payload.array.join("") ?
-        arr = [...state.isDone, action.payload.name] : arr = [...state.isDone]
+        arr = [action.payload.name] : arr = state.isDone
+        console.log(arr);
+        
       return {
         ...state,
         [action.payload.name]: [...action.payload.array],
         tempArr: [...action.payload.array],
-        isDone: [...arr]
+        isDone: arr && [...arr]
       }
 
     case PuzzleActionTypes.SET_PREVIEW_ARRAY:
