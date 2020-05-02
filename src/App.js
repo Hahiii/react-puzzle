@@ -45,14 +45,14 @@ function App({ resetStateToInit, previewPuzzleArray, updatePuzzleArray, updateTe
           <Puzzle
             isSolved={isSolved}
           />
-        </div>
-        {puzzle &&
-          <button className="preview"
-            disabled={!canClikck}
-            onClick={(event) => handlePreviewClick(event)}
-          >Preview</button>
+          {puzzle &&
+            <button className="preview"
+              disabled={!canClikck}
+              onClick={(event) => handlePreviewClick(event)}
+            >Preview</button>
 
-        }
+          }
+        </div>
       </div>
     </div >
   );

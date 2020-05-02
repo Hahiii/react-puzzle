@@ -5,7 +5,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  overflow: hidden;
+
   .App-header {
     width: 100%;
     padding: 40px 0;
@@ -73,12 +74,10 @@
   }
   .preview {
     padding: 8px 16px;
+    margin-top: 30px;
     font-size: 1.2rem;
     border: none;
     background: transparent;
+    cursor: pointer;
   }
 }
-
-// @media screen and (max-width: 500px) {
-
-// }

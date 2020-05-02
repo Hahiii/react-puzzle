@@ -25,6 +25,7 @@
     transform: rotate(0deg);
     transition: all 0.6s;
     padding: 20px 0;
+    cursor: pointer;
 
     &.arrowup {
       transform: rotate(180deg);

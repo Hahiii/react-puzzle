@@ -25,13 +25,13 @@ function ImageSwitcher({ updatePuzzle, updateSwitcherState, isSwitcherOpen, isPu
   return (
     <div className="switcher">
       {isSwitcherOpen && <div className="switcher-container">
-        {switchArray.map((item, index) => {
+        {switchArray && switchArray.map((item, index) => {
           return (
             <div className="puzzle-images"
               key={`image-${index}`}
             >
 
-              {isPuzzleDone.map((itemIsDone, index) => {
+              {isPuzzleDone && isPuzzleDone.map((itemIsDone, index) => {
                 return itemIsDone === item.name ? <DoneSign
                   key={`done-${index}`}
                   className="donesign"

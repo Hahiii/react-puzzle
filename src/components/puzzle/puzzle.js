@@ -87,7 +87,7 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview, isSolved, isP
         return (
           <Box
             value={parseInt(item) ? item : ""}
-            onClick={isPuzzleDone.indexOf(puzzle) === -1 ? handleClick : null}
+            onClick={isPuzzleDone && isPuzzleDone.indexOf(puzzle) === -1 ? handleClick : null}
             onAnimationEnd={handleAnimation}
             key={`box-${index}`}
             imageUrl={data[puzzle][`part${item}`]}
