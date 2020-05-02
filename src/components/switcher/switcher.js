@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectSwitcherState } from '../../redux/puzzle/puzzle.selectors';
+import { selectSwitcherState, selectIsDone } from '../../redux/puzzle/puzzle.selectors';
 import { setSwitcherState, setPuzzle } from '../../redux/puzzle/puzzle.action';
 
 import './switcher.scss';
@@ -11,7 +11,7 @@ import { switchArray, puzzleColor } from '../../data/data';
 import Arrow from '../../images/downloading.png'
 import DoneSign from '../donesign/done';
 
-function ImageSwitcher({ updatePuzzle, updateSwitcherState, isSwitcherOpen, isDone }) {
+function ImageSwitcher({ updatePuzzle, updateSwitcherState, isSwitcherOpen, isPuzzleDone }) {
 
   const handleClick = (target) => {
     updatePuzzle(target.id);
@@ -31,7 +31,7 @@ function ImageSwitcher({ updatePuzzle, updateSwitcherState, isSwitcherOpen, isDo
               key={`image-${index}`}
             >
 
-              {isDone.map((itemIsDone, index) => {
+              {isPuzzleDone.map((itemIsDone, index) => {
                 return itemIsDone === item.name ? <DoneSign
                   key={`done-${index}`}
                   className="donesign"
@@ -72,6 +72,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = createStructuredSelector({
   isSwitcherOpen: selectSwitcherState,
+  isPuzzleDone: selectIsDone
 });
 
 

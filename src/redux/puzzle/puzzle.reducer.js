@@ -15,7 +15,8 @@ const INITIAL_STATE = {
   numbers: null,
   preview: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "x"],
   isPreview: false,
-  isOpen: true
+  isOpen: true,
+  isDone: []
 
 }
 
@@ -28,16 +29,21 @@ export const puzzleReducer = (state = INITIAL_STATE, action) => {
       }
 
     case PuzzleActionTypes.SET_PUZZLE_ARRAY:
+      let arr = [];
+      state.preview.join("") === action.payload.array.join("") ?
+        arr = [...state.isDone, action.payload.name] : arr = [...state.isDone]
       return {
         ...state,
         [action.payload.name]: [...action.payload.array],
-        tempArr: [...action.payload.array]
+        tempArr: [...action.payload.array],
+        isDone: [...arr]
       }
 
     case PuzzleActionTypes.SET_PREVIEW_ARRAY:
+
       return {
         ...state,
-        [action.payload.name]: [...action.payload.array],
+        [action.payload.name]: [...action.payload.array]
       }
 
     case PuzzleActionTypes.SET_TEMP_ARRAY:

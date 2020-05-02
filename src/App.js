@@ -5,19 +5,15 @@ import Puzzle from './components/puzzle/puzzle';
 import ImageSwitcher from './components/switcher/switcher';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectTempArr, selectPuzzleArray, selectPreview, selectPreviewState, selectPuzzle } from './redux/puzzle/puzzle.selectors';
+import { selectTempArr, selectPuzzleArray, selectPreview, selectPreviewState, selectPuzzle, selectIsDone } from './redux/puzzle/puzzle.selectors';
 import { setStateToInit, setPreview, setTempArray, setPuzzleArray, setIsPreviewState } from './redux/puzzle/puzzle.action';
 import { puzzleColor } from './data/data';
 
-function App({ resetStateToInit, previewPuzzleArray, updatePuzzleArray, updateTempArray, updatePreviewState, puzzleArray, preview, isPreview, puzzle, tempArr }) {
+function App({ resetStateToInit, previewPuzzleArray, updatePuzzleArray, updateTempArray, updatePreviewState, puzzleArray, preview, isPreview, puzzle, tempArr, isPuzzleDone }) {
   let [canClikck, setCanClikck] = useState(true);
-  let [isDone, setIsDone] = useState([]);
   let isSolved = !isPreview && puzzleArray && preview.join("") === puzzleArray.join("");
 
-  if (isSolved && isDone.indexOf(puzzle) === -1) {
-    setIsDone([...isDone, puzzle])
-  }
-  
+
   const handlePreviewClick = (event) => {
     event.preventDefault()
     previewPuzzleArray({ name: puzzle, array: [...preview] });
@@ -41,23 +37,20 @@ function App({ resetStateToInit, previewPuzzleArray, updatePuzzleArray, updateTe
         <h1 onClick={() => resetState()}>Puzzle</h1>
       </header>
       <div className="main-container">
-        <ImageSwitcher
-          isDone={isDone}
-        />
+        <ImageSwitcher />
         <div className="game-container">
           <div className="solved-puzzle">
             {isSolved && <h2>{`Well done..!! You solved ${puzzle.toUpperCase()}`}</h2>}
           </div>
           <Puzzle
             isSolved={isSolved}
-            isDone={isDone}
           />
         </div>
         {puzzle &&
           <button className="preview"
             disabled={!canClikck}
             onClick={(event) => handlePreviewClick(event)}
-          >Preview {isSolved}</button>
+          >Preview</button>
 
         }
       </div>
@@ -70,7 +63,8 @@ const mapStateToProps = createStructuredSelector({
   preview: selectPreview,
   isPreview: selectPreviewState,
   puzzle: selectPuzzle,
-  tempArr: selectTempArr
+  tempArr: selectTempArr,
+  isPuzzleDone: selectIsDone
 });
 
 const mapDispatchToProps = dispatch => ({

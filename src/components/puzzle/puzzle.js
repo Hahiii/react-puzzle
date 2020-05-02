@@ -6,12 +6,12 @@ import Box from '../box/box';
 import data from '../../data/data.json';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectPuzzleArray, selectPuzzle, selectPreview } from '../../redux/puzzle/puzzle.selectors';
+import { selectPuzzleArray, selectPuzzle, selectPreview, selectIsDone } from '../../redux/puzzle/puzzle.selectors';
 import { setPuzzleArray } from '../../redux/puzzle/puzzle.action';
 
 
 
-function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview, isSolved, isDone }) {
+function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview, isSolved, isPuzzleDone }) {
   const [puzzleNumber, setPuzzleNumber] = useState()
   const [directionToMove, setDirectionToMove] = useState("");
   const puzzleArrayMap = [];
@@ -80,14 +80,14 @@ function Puzzle({ puzzleArray, updatePuzzleArray, puzzle, preview, isSolved, isD
   const handleAnimation = () => {
     setPuzzleNumber();
   }
-  
+
   return (
     <div className="puzzle-container">
       {puzzle && puzzleArray && puzzleArray.map((item, index) => {
         return (
           <Box
             value={parseInt(item) ? item : ""}
-            onClick={isDone.indexOf(puzzle) === -1 ? handleClick : null}
+            onClick={isPuzzleDone.indexOf(puzzle) === -1 ? handleClick : null}
             onAnimationEnd={handleAnimation}
             key={`box-${index}`}
             imageUrl={data[puzzle][`part${item}`]}
@@ -109,6 +109,7 @@ const mapStateToProps = createStructuredSelector({
   puzzleArray: selectPuzzleArray,
   puzzle: selectPuzzle,
   preview: selectPreview,
+  isPuzzleDone: selectIsDone
 });
 
 

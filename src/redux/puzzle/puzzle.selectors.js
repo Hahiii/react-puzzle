@@ -31,3 +31,8 @@ export const selectSwitcherState = createSelector(
   [selectGame],
   state => state.isOpen
 );
+
+export const selectIsDone = createSelector(
+  [selectGame],
+  state => state.isDone
+);
