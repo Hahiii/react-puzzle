@@ -6,11 +6,11 @@ const INITIAL_STATE = {
   bob: null,
   micky: null,
   minne: null,
-  donald: null,
-  melman: null,
+  donald: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, "x", 15],
+  melman: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, "x", 15],
   minion: null,
   cricket: null,
-  monsters: null,
+  monsters: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, "x", 15],
   bird: null,
   numbers: null,
   preview: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "x"],
@@ -30,8 +30,9 @@ export const puzzleReducer = (state = INITIAL_STATE, action) => {
 
     case PuzzleActionTypes.SET_PUZZLE_ARRAY:
       let arr = [];
-      state.preview.join("") === action.payload.array.join("") ?
-        arr = [action.payload.name] : arr = state.isDone
+      if (state.preview.join("") === action.payload.array.join("") && state.isDone) {
+        arr = [...state.isDone, action.payload.name]
+      };
 
       return {
         ...state,
