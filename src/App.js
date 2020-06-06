@@ -45,6 +45,7 @@ function App({
     updateTempArray([...puzzleArray]);
     updatePreviewState(true);
     setCanClick(false);
+
     let timeout = setTimeout(() => {
       updatePuzzleArray({ name: puzzle, array: [...tempArr] });
       updatePreviewState(false);
@@ -72,7 +73,7 @@ function App({
               <h2>{`Well done..!! You solved ${puzzle.toUpperCase()}`}</h2>
             )}
           </div>
-          <Puzzle isSolved={isSolved} />
+          <Puzzle isSolved={isSolved} canClick={canClick} />
           {puzzle && (
             <button
               className="preview"
