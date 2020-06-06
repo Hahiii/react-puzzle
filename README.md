@@ -1,13 +1,23 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Puzzle Game
 
-## Available Scripts
+Fix a series of scrambled pictures, but be careful - it is quite addicting.
 
-In the project directory, you can run:
+The game will save your progress in local storage. To reset your game status and start over you need to click on the logo.
 
-### `npm start`
+## Setup
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is a React project. Make sure you have node installed.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+To install all dependecies run:
+
+```bash
+npm install
+```
+
+## Run the project
+
+To run the project: `npm start`, local server will be running on localhost:3000
+
+## Build the project
+
+To build the project: `npm run build`
