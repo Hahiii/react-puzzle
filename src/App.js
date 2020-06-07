@@ -80,7 +80,7 @@ function App({
               disabled={!canClick}
               onClick={(event) => handlePreviewClick(event)}
             >
-              Show me a preview
+              Show preview
             </button>
           )}
         </div>
