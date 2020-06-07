@@ -4,20 +4,24 @@ Fix a series of scrambled pictures, but be careful - it is quite addicting.
 
 The game will save your progress in local storage. To reset your game status and start over you need to click on the logo.
 
+![select an image to play](fix-the-puzzle-select.png)
+
+![fix the puzzle](fix-the-puzzle-monsters.png)
+
 ## Setup
 
 This is a React project. Make sure you have node installed.
 
-To install all dependecies run:
+To install all dependecies run `npm install`.
 
-```bash
-npm install
-```
+## Run locally
 
-## Run the project
+To run the project locally run `npm start`.
 
-To run the project: `npm start`, local server will be running on localhost:3000
+You can then open the project on [http://localhost:3000/](http://localhost:3000/) in the browser.
 
 ## Build the project
 
 To build the project: `npm run build`
+
+Builds the app for production to the `build` folder.
